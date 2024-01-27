@@ -4,7 +4,7 @@ import openai
 import time
 
 # setting openai api key
-openai.api_key = "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"
+openai.api_key = "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"
 
 # initialise text to speech engine
 engine = pyttsx3.init()
