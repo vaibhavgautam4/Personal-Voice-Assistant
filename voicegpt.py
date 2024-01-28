@@ -2,9 +2,13 @@ import pyttsx3
 import speech_recognition as sr
 import openai
 import time
+import os
+from chat_search import generate_response
 
-# setting openai api key
-openai.api_key = "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"
+
+# setting openai api key (put your api key here)
+openai.api_key = "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"
+
 
 # initialise text to speech engine
 engine = pyttsx3.init()
@@ -20,24 +24,11 @@ def transcribe_audio_to_text(filename):
     except:
         print("skipping unknown error!!")
 
-def generate_response(prompt):
-    response = openai.completions.create(
-        model="gpt-3.5-turbo",
-        prompt= prompt,
-        max_tokens=100,
-        n=1,
-        stop=None,
-        temperature=0.5
-    )
-
-    message = response.choices[0].text
-
-    # print(message)
-    return message
-
 def speak_text(text):
+    voices = engine.getProperty('voices')
+    engine.setProperty('voice', voices[0].id)  # <--- voice id can be male(0) or female(1) 
     engine.say(text)
-    engine.runAndWait
+    engine.runAndWait()
 
 def main():
     while(1):
@@ -54,7 +45,7 @@ def main():
                     print("ask questions to jarvis...")
                     with sr.Microphone() as source:
                         recognizer = sr.Recognizer()
-                        source.pause_threshold = 1
+                        recognizer.pause_threshold = 0.7
                         audio = recognizer.listen(source, phrase_time_limit=None, timeout=None)
                         with open(filename, "wb") as f:
                             f.write(audio.get_wav_data())
@@ -71,6 +62,7 @@ def main():
 
                     # read responses out
                     speak_text(response)
+                    # speak_text(text)
 
             except Exception as e:
                 print("An error occured: {}".format(e))
