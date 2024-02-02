@@ -1,34 +1,13 @@
-import pyttsx3
+
 import speech_recognition as sr
 import openai
 import time
 import os
-from chat_search import generate_response
+from search import speak_text, transcribe_audio_to_text, generate_response
 
 
 # setting openai api key (put your api key here)
-openai.api_key = "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"
-
-
-# initialise text to speech engine
-engine = pyttsx3.init()
-
-# audio to text transcription
-
-def transcribe_audio_to_text(filename):
-    recognizer = sr.Recognizer()
-    with sr.AudioFile(filename) as source:
-        audio = recognizer.record(source)
-    try:
-        return recognizer.recognize_google(audio)
-    except:
-        print("skipping unknown error!!")
-
-def speak_text(text):
-    voices = engine.getProperty('voices')
-    engine.setProperty('voice', voices[0].id)  # <--- voice id can be male(0) or female(1) 
-    engine.say(text)
-    engine.runAndWait()
+openai.api_key = "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"
 
 def main():
     while(1):
