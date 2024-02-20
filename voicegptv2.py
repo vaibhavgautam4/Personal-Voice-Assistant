@@ -3,7 +3,7 @@ import pyttsx3
 import os
 import openai as ai
 # from search import generate_response
-from search import wish, wikipedia_search, speak_text, open_sites
+from search import wish, wikipedia_search, speak_text, open_sites, play_song, introduce
 from voicegpt import transcribe_audio_to_text
 
 def takeCommand():
@@ -34,3 +34,9 @@ if __name__ == '__main__':
 
     elif 'open' in query:
         open_sites(query)
+
+    elif 'play' in query:
+        play_song(query)
+
+    elif 'introduce youself' in query:
+        introduce()

@@ -47,15 +47,15 @@ def generate_response(prompt):
 def wish():
     hour = int(datetime.datetime.now().hour)
     if hour>0 and hour<12:
-        print('good morning sir!')
+        print('        good morning sir!')
         speak_text('good morning sir!')
 
     elif hour>12 and hour<18:
-        print('good afternoon sir!')
+        print('         good afternoon sir!')
         speak_text('good afternoon sir!')
 
     elif hour>18 and hour<20:
-        print('Good Evening sir!')
+        print('      good evening sir!')
         speak_text('good evening sir!')
 
     print("I'm Jarvis. How can I help you today!")
@@ -91,4 +91,10 @@ def play_song(song):
             speak_text('playing {s}')
             os.open(s)
 
+def introduce():
+    print('Sure sir!')
+    print("I'm JARVIS! Just Another Really Very intelligent System! ")
+    speak_text('         Sure sir!')
+    speak_text("I'm JARVIS! Just Another Really Very intelligent System! ")
 
+introduce()
